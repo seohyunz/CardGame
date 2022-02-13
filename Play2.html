@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PLAY</title>
+    <style media="screen">
+        *{margin: 0; padding: 0;}
+         body{font: 20px "NanumGothic"}
+         
+         #d1{
+           width: 700px;
+           height: 700px;
+           background: #FFFFFF;
+           margin: 0 auto;
+           text-align: center;     
+             
+         }   
+       </style> 
+    <style>
+            img{
+                width: 120px;
+                height: 160px;
+            }
+            body{    
+                background-color: #0B0B61;
+         }
+         
+    </style> 
+    </head>   
+    <body>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <button >게임 시작</button>   
+    <button onclick="location.href='E:\\js_cc\\main_c.html'">main</button>  
+    <br>
+    <br>
+    <div id = "d1" class="img-div" > </div>
+    
+    <script>   
+        let srcs = [];  
+        let cards;
+        let end = document.createElement('br')
+        let hart =5;
+        window.onload = function(){
+           
+        //반복문 이용해서 이미지 넣기
+            let put = '';
+                for(let i=0; i<2; i++){
+                    for(let j=7; j<17; j++){    
+                    put += '<img src="'+j+'\.png">';
+                    }
+                }
+
+            let divtag = document.querySelector('div');
+             divtag.innerHTML = put;
+
+            let btns = document.querySelectorAll('button');
+             cards = document.querySelectorAll('img');
+                
+             //카드
+            for(let i=0; i<cards.length; i++){
+                srcs[i] = cards[i].src;
+            }
+
+             //시작  클릭시 섞고 뒤집기
+            btns[0].onclick = function show(){
+                alert("게임시작 5초후 뒤집힙니다");
+               
+                 srcs.sort((a, b) => Math.random() -0.5);
+                 for(let i=0; i<cards.length; i++){
+                    cards[i].src = srcs[i];
+                }
+                    setTimeout(function() {
+                      for(let i=0; i<cards.length; i++){
+                        cards[i].src = "back1.png";
+                        }
+                    }, 5000); //5초후 카드 뒤집
+                }
+               
+                //카드 클릭시
+                for(let i=0; i<cards.length; i++){
+                    cards[i].setAttribute("id", i);
+                }
+                for(let i=0; i<cards.length; i++){
+                     cards[i].setAttribute("onclick", "cardcheck(this.id)");
+                }
+           
+            }
+           
+
+            //점수
+            //메인으로 돌아가기
+            let check = [];
+            let num1 = 0, num2;
+            let count = 0;
+            let score = 0;
+           
+        
+            function cardcheck(i){
+                    
+                    cards[i].src = srcs[i];
+                    check[num1++]= srcs[i];     
+
+                    //처음카드
+                    if(num1 == 1){
+                        num2 = i;
+                    }
+
+                    //두번째
+                    if(num1 == 2){ //맞으면
+                        if(check[0] == check[1]){
+                            score+=10;
+                            setTimeout(function(){
+                               },700);
+                                count += 10;
+                        }
+                        
+                        else{ //틀리면 다시 뒤집음
+                            hart--;
+                            setTimeout(function(){
+                            cards[num2].src = "back1.png";
+                            cards[i].src = "back1.png";
+
+                            },1000);
+
+                            setTimeout(function(){},700);
+                        }
+                        num1 = 0;
+                    }
+                  
+                    if(count == 100){
+                        alert("성공 2단계로 넘어갑니다.")//총3단계로 만들기 
+                        alert("현재 점수" +(score+60));
+                       document.location.href = "Play2.html";
+                    }
+                    if(hart == 0){
+                        alert("실패 메인으로 돌아갑니다")
+                        alert("점수 : " +(score+60));
+                        document.location.href = "main_c.html";
+                    }
+
+                   
+
+            }
+
+        </script>
+
+
+   </body>
+   
+</html>

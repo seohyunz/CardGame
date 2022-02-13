@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>인디언 포커</title>
+    <link rel="stylesheet" type="text/css" href="indianPoker.css" />
+    <script defer src="indianPoker.js"></script>
+</head>
+<body>
+  <div class="container">
+    <div id="score">
+      <div id="roundtxt" class="roundtxt">Round : </div>
+      <div id="round" class="roundtxt"></div>
+      <div id="chips" class="roundtxt"></div>
+    </div>
+    <div id="turn" class="roundtxt">
+      <b>
+
+      </b>
+    </div>
+    <div class="board">
+      
+      <div class="opponentBoard">
+        <div id="opponent" class="card">
+          <img class="cardImg" id="oImg">
+        </div>
+      </div>
+      <div class="playerBoard">
+        <div id="player" class="card">
+          <img class="cardImg" id="pImg">
+        </div>
+      </div>
+      <div class="choose_btn">
+        <button class="btn" value="CALL" onclick="Call()">CALL</button>
+        <button class="btn" value="DIE" onclick="Die()">DIE</button>
+        <button class="btn" onclick="location.href='E:\\js_cc\\main_c.html'">main</button>
+      </div>
+      <div id="opponentTalk" class="roundtxt">
+        
+      </div>
+      <div id="playerTalk" class="roundtxt">
+      
+      </div>
+    </div>
+    
+  </div>
+</body>
+</html>
